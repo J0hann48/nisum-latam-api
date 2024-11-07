@@ -20,10 +20,6 @@ public class UserRequestMapperImpl implements GenericMapper<UserRequest, UserEnt
                 .email(dto.getEmail())
                 .password(dto.getPassword())
                 .phones(dto.getPhones())
-                .created(new Date(System.currentTimeMillis()))
-                .modified(new Date(System.currentTimeMillis()))
-                .lastLogin(new Date(System.currentTimeMillis()))
-                .isActive(true)
                 .build();
     }
 

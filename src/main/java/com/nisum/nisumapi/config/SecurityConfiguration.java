@@ -34,11 +34,11 @@ public class SecurityConfiguration {
                                                    AuthenticationManager authenticationManager) throws Exception {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtService);
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
-        jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeHttpRequests -> {
-                    authorizeHttpRequests.requestMatchers("/v1/createUser").permitAll();
+                    authorizeHttpRequests.requestMatchers("/v1/user/create").permitAll();
                     authorizeHttpRequests.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> {
