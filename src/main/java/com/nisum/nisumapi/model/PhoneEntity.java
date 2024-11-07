@@ -13,12 +13,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "phones")
-public class Phone {
+public class PhoneEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String number;
-    private String cityCode;
-    private String countryCode;
+    @Column(name = "citycode")
+    private String citycode;
+    @Column(name = "countrycode")
+    private String countrycode;
 }

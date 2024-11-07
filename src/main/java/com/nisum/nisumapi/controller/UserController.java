@@ -1,15 +1,26 @@
 package com.nisum.nisumapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.nisum.nisumapi.controller.user.UserRequest;
+import com.nisum.nisumapi.controller.user.UserResponse;
+import com.nisum.nisumapi.service.UserService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1")
+@RequiredArgsConstructor
+@Validated
 public class UserController {
 
-    @GetMapping("/info")
-    public String hello(){
-        return "Hello";
+    private final UserService userService;
+
+    @PostMapping("/createUser")
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest){
+        UserResponse userResponse = userService.createUser(userRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }
 }
