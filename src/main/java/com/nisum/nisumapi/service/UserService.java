@@ -9,6 +9,7 @@ import com.nisum.nisumapi.model.UserEntity;
 import com.nisum.nisumapi.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,16 @@ public class UserService {
         userEntity.setModified(new Date(System.currentTimeMillis()));
         userEntity.setLastLogin(new Date(System.currentTimeMillis()));
         userEntity = userRepository.save(userEntity);
+
         return responseUserEntityGenericMapper.toDTO(userEntity);
+    }
+
+    @Transactional
+    public UserResponse updateUser(UserRequest userRequest){
+        if (userRepository.findByEmail(userRequest.getEmail()).isEmpty()){
+            throw new IllegalStateException("El usuario no existe");
+        }
+        //TODO validar token para actualizar
+        throw new NotImplementedException();
     }
 }

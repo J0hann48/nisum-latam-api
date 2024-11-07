@@ -11,16 +11,22 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("v1")
+@RequestMapping("v1/user")
 @RequiredArgsConstructor
 @Validated
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/createUser")
+    @PostMapping("/create")
     public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest userRequest){
         UserResponse userResponse = userService.createUser(userRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponse);
     }
+
+    @PutMapping("edit")
+    public ResponseEntity<UserResponse> updateUser(@Valid @RequestBody UserRequest){
+
+    }
+
 }
