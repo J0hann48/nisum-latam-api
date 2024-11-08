@@ -38,7 +38,8 @@ public class SecurityConfiguration {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeHttpRequests -> {
-                    authorizeHttpRequests.requestMatchers("/v1/user/create").permitAll();
+                    authorizeHttpRequests.requestMatchers("/v1/user/create", "/swagger-ui/**", "/v3/api-docs/**",
+                            "/swagger-resources/**", "/swagger-ui.html", "/webjars/**").permitAll();
                     authorizeHttpRequests.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> {
