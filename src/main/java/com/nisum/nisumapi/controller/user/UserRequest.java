@@ -1,9 +1,7 @@
 package com.nisum.nisumapi.controller.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nisum.nisumapi.config.annotation.ValidPassword;
 import com.nisum.nisumapi.model.PhoneEntity;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
@@ -20,7 +18,6 @@ public class UserRequest {
     )
     private String email;
     @JsonProperty("password")
-    @ValidPassword
     private String password;
     @JsonProperty("phones")
     private Set<PhoneEntity> phones;
