@@ -132,6 +132,12 @@ Para editar un usuario existente, envía una solicitud PUT al endpoint /v1/user/
             ]
 }
 ```
+### Documentacion Swagger
+
+Para ver la documentacion de Swagger luego de ejecutar la aplicacion se debe ir al siguiente endpoint
+```
+/swagger-ui.html
+```
 
 ### Consideraciones para la Edición:
 
